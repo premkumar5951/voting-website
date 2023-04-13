@@ -1,0 +1,12 @@
+<nav class="flex flex-row bg-[#2b2d42] h-[4em] w-full px-[20px] py-[16px] items-center" style="justify-content:space-between">
+<h1 class="font-bold text-white text-[20px]">Voting Website</h1>
+{% if request.user.is_authenticated%}
+<div class="flex flex-row" style="grid-gap:30px">
+    <form action="logout" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="font-bold text-white text-[20px]">Logout</button>
+    </form>
+    <h1 class="font-bold text-white text-[20px]">{{request.user.get_full_name}}</h1>
+</div>
+{% endif %}
+</nav>

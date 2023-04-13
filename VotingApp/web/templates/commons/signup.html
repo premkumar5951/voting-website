@@ -1,0 +1,101 @@
+{% load static%}
+<div class="flex flex-row w-full justify-center items-center h-screen">
+  <div
+    class="flex flex-row w-[80%] p-[20px] mx-auto justify-center items-center bg-white rounded-[8px] shadow-md"
+  >
+    <div class="flex-1 p-[20px]">
+      <img
+        src="{% static '/image/signup.svg' %}"
+        alt="vote images"
+        style="width: 90%"
+      />
+    </div>
+
+    <div
+      class="flex-1 h-full flex flex-col justify-center items-center p-[20px]"
+    >
+      <div class="w-full text-center pb-[10px]">
+        <h1
+          class="text-[26px] font-bold text-black tracking-[0.3px] mb-3"
+          style="opacity: 0.9; font-size: 26px"
+        >
+          Create Account
+        </h1>
+      </div>
+      <div class="w-full flex flex-col items-center">
+        <form action="sign-up" method="POST" class="w-[60%]">
+          {% csrf_token %}
+          <div class="flex flex-col w-full">
+            <input
+              type="text"
+              name="firstname"
+              placeholder="First Name"
+              id="firstname"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            />
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Last Name"
+              id="lastname"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            /><input
+              type="text"
+              name="adhaar"
+              placeholder="Adhaar Number"
+              id="adhaar"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            /><input
+              type="tel"
+              name="phone"
+              placeholder="Phone"
+              id="phone"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            />
+            <label
+              for="dob"
+              class="font-semibold tracking-[0.3px]"
+              style="margin-top: 10px; opacity: 0.7"
+              >Date Of Birth as on ADHAAR:</label
+            >
+            <input
+              type="date"
+              name="dob"
+              placeholder="First Name"
+              id="dob"
+              class="px-[18px] py-[10px] w-[100%] rounded-[8px] shadow-sm text-[16px] text-black font-semibold tracking-[0.3px]"
+              style="margin-bottom: 10px; opacity: 0.6"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="px-[20px] w-full py-[12px] rounded-[12px] shadow-sm text-center text-[18px] text-white font-bold tracking-[0.3px]"
+            style="margin-top: 10px; background: #6c63ff"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <a
+        href="/login"
+        class="text-center text-[14px] font-[500] tracking-[0.3px]"
+        style="margin-top: 10px; color: blue"
+      >
+        Already have an account, login?
+      </a>
+    </div>
+  </div>
+</div>

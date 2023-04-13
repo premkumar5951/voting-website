@@ -1,0 +1,62 @@
+{% load static%}
+<div class="w-full bg-white p-[20px] min-h-[450px]">
+  <div class="">
+    <h1
+      class="font-bold mb-3"
+      style="opacity: 0.9; font-size: 34px; letter-spacing: 1px; color: #c00909"
+    >
+      Vote For Your Favourite Candidate
+    </h1>
+  </div>
+  <div
+    class="w-full flex flex-row justify-center h-full"
+    style="padding: 20px; gap: 50px;flex-wrap:wrap"
+  >
+  {% for party in parties %}
+      <div
+        class="p-[20px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+        style="min-width:200px; max-height: 280px; max-width: 250px; background: #eaeaea; border: 1px solid #00000021;"
+      >
+        <img
+          src="/media/{{party.logo}}"
+          alt="vote images"
+          style="width: 130px;height:130px; border-radius: 50%;"
+          class="object-cover"
+        />
+        <p
+          class="font-bold tracking-[0.3px] self-end"
+          style="opacity: 0.9; font-size: 18px; margin-top: 5px"
+        >
+          {{party.name}}
+        </p>
+        <p
+          class="tracking-[0.3px] self-end"
+          style="opacity: 0.9; font-size: 12px; margin-top: 5px"
+        >
+        {{party.manifesto | truncatechars:30}}
+        </p>
+        <form action="/vote-page/{{live_event.id}}" action="POST">
+          <button
+          id="party{{party.id}}"
+          data-event="{{live_event.id}}"
+          data-party="{{party.id}}"
+          type="button"
+          class="text-white font-semibold tracking-[0.3px] self-end vote-btn"
+          style="opacity: 0.9; font-size: 12px; margin-top: 10px;background: #0b3811; border: none; padding: 10px; border-radius: 5px;"
+        >
+          Vote for {{party.candidate_name | truncatechars:15}}
+        </button>
+        </form>
+        
+      </div>
+  {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+
+
+

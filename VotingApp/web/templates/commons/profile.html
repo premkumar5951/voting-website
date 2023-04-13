@@ -1,0 +1,271 @@
+{% load static%}
+<div class="w-full bg-white p-[20px] min-h-[450px]">
+  <div class="">
+    <h1
+      class="font-bold mb-3"
+      style="opacity: 0.9; font-size: 34px; letter-spacing: 1px; color: #c00909"
+    >
+      Ongoing Live Event:
+    </h1>
+  </div>
+  {% if live_event and not is_voted %}
+  <div
+    class="w-full flex flex-row justify-center h-full"
+    style="padding: 20px; gap: 20px"
+  >
+    <a href="/vote-page/{{live_event.id}}">
+      <div
+        class="text-white p-[20px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+        style="min-height: 300px; min-width: 300px; background: #0a0748"
+      >
+        <p
+          class="font-bold uppercase mb-5 self-start"
+          style="opacity: 0.9; font-size: 24px; letter-spacing: 1px"
+        >
+          Election 2023
+        </p>
+        <img
+          src="{% static '/image/vote_now.svg' %}"
+          alt="vote images"
+          style="width: 60%"
+        />
+        <p
+          class="font-bold tracking-[0.3px] self-end"
+          style="opacity: 0.9; font-size: 30px; margin-top: 20px"
+        >
+          Vote Now ➚
+        </p>
+      </div>
+    </a>
+  </div>
+  {% else %}
+  <div
+    class="w-full flex flex-row justify-center h-full"
+    style="padding: 20px; gap: 20px"
+  >
+    <div
+      class="p-[20px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+      style="min-height: 300px; min-width: 300px"
+    >
+      <p
+        class="font-bold mb-5 self-start"
+        style="opacity: 0.9; font-size: 24px; letter-spacing: 1px"
+      >{% if is_voted %}
+        You have already voted</br>
+        ({{live_event.name}})
+        {% else %}
+        No Live Events Stay Tuned...
+        {% endif %}
+      </p>
+      {% if is_voted %}
+      <img
+        src="{% static '/image/voted.svg' %}"
+        alt="vote images"
+        style="width: 30%"
+      />
+      {% else %}
+      <img
+        src="{% static '/image/not_found.png' %}"
+        alt="vote images"
+        style="width: 30%"
+      />
+      {% endif %}
+      <a
+        href="#upcoming_event"
+        class="font-bold tracking-[0.3px] self-end"
+        style="opacity: 0.9; font-size: 14px; margin-top: 20px; color: blue"
+      >
+        Check Upcoming Events ↓
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="w-full flex flex-col bg-white p-[20px] min-h-[450px]" style="margin-top:50px" id="upcoming_event">
+  <div class="">
+    <h1
+      class="font-bold mb-3"
+      style="opacity: 0.9; font-size: 34px; letter-spacing: 1px; color: green"
+    >
+      Upcoming Events:
+    </h1>
+  </div>
+  <div
+    class="w-full flex flex-row h-full"
+    style="
+      padding: 20px;
+      gap: 20px;
+      justify-content: space-between;
+      border: 1px solid gray;
+    "
+  >
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Event Name
+      </p>
+    </div>
+
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Event Date
+      </p>
+    </div>
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Event Detail
+      </p>
+    </div>
+  </div>
+  {% for upcoming in upcoming_event %}
+  <div
+    class="w-full flex flex-row h-full"
+    style="padding: 20px;padding-bottom:0px;padding-right:0px; gap: 20px; justify-content: space-between"
+  >
+    <div
+      class="p-[10px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        {{upcoming.name}}
+      </p>
+    </div>
+
+    <div
+      class="p-[10px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        {{upcoming.event_date}}
+      </p>
+    </div>
+    <a href=""><div
+      class="text-white shadow-sm text-center rounded-[4px] flex flex-col justify-center items-center"
+      style="background: #0a0748; padding: 16px 20px"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+      View Candidates
+      </p>
+    </div>
+  </a>
+  </div>
+</div>
+  {% endfor %}
+
+<div class="w-full flex flex-col p-[20px] bg-white min-h-[450px]" style="margin-top:50px">
+  <div class="">
+    <h1
+      class="font-bold mb-3"
+      style="opacity: 0.9; font-size: 34px; letter-spacing: 1px; color: #c00909"
+    >
+      Past Events:
+    </h1>
+  </div>
+  <div
+    class="w-full flex flex-row h-full"
+    style="
+      padding: 20px;
+      gap: 20px;
+      justify-content: space-between;
+      border: 1px solid gray;
+    "
+  >
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Event Name
+      </p>
+    </div>
+
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Ended On(Date)
+      </p>
+    </div>
+    <div
+      class="shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        Result
+      </p>
+    </div>
+  </div>
+  {% for past in upcoming_event %}
+  <div
+    class="w-full flex flex-row h-full"
+    style="padding: 20px;padding-bottom:0px;padding-right:0px; gap: 20px; justify-content: space-between"
+  >
+    <div
+      class="p-[10px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        {{past.name}}
+      </p>
+    </div>
+
+    <div
+      class="p-[10px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+        {{past.event_end_date}}
+      </p>
+    </div>
+    <a href=""><div
+      class="text-white shadow-sm text-center rounded-[4px] flex flex-col justify-center items-center"
+      style="background: #0a0748; padding: 16px 20px"
+    >
+      <p
+        class="font-bold self-start"
+        style="opacity: 0.9; font-size: 16px; letter-spacing: 1px"
+      >
+      View Details
+      </p>
+    </div>
+  </a>
+</div>
+{% endfor %}
+
+
+
+
+

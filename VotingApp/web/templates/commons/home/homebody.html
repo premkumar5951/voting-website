@@ -1,0 +1,50 @@
+{% load static%}
+<div class="flex flex-row w-full justify-center items-center h-screen">
+  <div
+    class="flex flex-row w-[80%] p-[20px] py-[40px] mx-auto justify-center items-center bg-white rounded-[8px] shadow-md"
+  >
+    <div class="flex-1 p-[20px]">
+      <img
+        src="{% static '/image/vote.svg' %}"
+        alt="vote images"
+        style="width: 90%"
+      />
+    </div>
+    
+    <div
+      class="flex-1 h-full flex flex-col justify-center items-center p-[20px]"
+    >
+      <div class="w-full text-center pb-[50px]">
+        <h1
+          class="text-[38px] font-bold text-black tracking-[0.3px] mb-3"
+          style="opacity: 0.9"
+        >
+          Welcome to Voting Portal
+        </h1>
+        <h1
+          class="text-[18px] font-bold text-black tracking-[0.3px]"
+          style="opacity: 0.7"
+        >
+          Register / login first before voting
+        </h1>
+      </div>
+
+      <a
+        href="/login"
+        class=" px-[20px] py-[12px] w-[60%] rounded-[12px] shadow-sm text-center text-[18px] text-white font-bold tracking-[0.3px]"
+        style="margin-bottom: 10px;background:#3F3D56"
+      >
+        Sign in
+      </a>
+      <p class="text-[18px] text-black font-semibold">or</p>
+      <a
+        href="/sign-up"
+        class="px-[20px] py-[12px] w-[60%] rounded-[12px] shadow-sm text-center text-[18px] text-white font-bold tracking-[0.3px]"
+        style="margin-top: 10px; background:#6C63FF"
+      >
+        Create account
+      </a>
+    </div>
+    
+  </div>
+</div>

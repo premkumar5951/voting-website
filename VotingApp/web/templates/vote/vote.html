@@ -1,0 +1,13 @@
+{% extends "home_base.html" %} 
+{% load static%}
+{% block head %}
+<title>Home</title>
+<script type="text/javascript" src="{% static 'js/vote.js' %}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+{% endblock head %} 
+{% block body %} 
+{% include "commons/nav.html"%}
+{% include "commons/vote.html"%}
+{% endblock body%}
