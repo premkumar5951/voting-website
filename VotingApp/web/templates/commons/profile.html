@@ -224,7 +224,7 @@
       </p>
     </div>
   </div>
-  {% for past in upcoming_event %}
+  {% for past in past_event %}
   <div
     class="w-full flex flex-row h-full"
     style="padding: 20px;padding-bottom:0px;padding-right:0px; gap: 20px; justify-content: space-between"
@@ -250,7 +250,7 @@
         {{past.event_end_date}}
       </p>
     </div>
-    <a href=""><div
+    <a href="/result/{{past.id}}"><div
       class="text-white shadow-sm text-center rounded-[4px] flex flex-col justify-center items-center"
       style="background: #0a0748; padding: 16px 20px"
     >

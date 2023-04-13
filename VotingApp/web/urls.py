@@ -9,5 +9,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view(), name='logout'),
     path('profile', ProfileView.as_view(), name='profile'),
     path('vote-page/<str:id>', VoteView.as_view(), name='vote'),
+    path('result/<str:id>', ResultView.as_view(), name='result'),
     
 ]
