@@ -1,0 +1,72 @@
+{% load static%}
+<div class="w-full bg-white p-[20px] min-h-[450px]">
+  <div class="">
+    <h1
+      class="font-bold mb-3"
+      style="opacity: 0.9; font-size: 34px; letter-spacing: 1px; color: #c00909"
+    >
+      Result for {{event.name}}
+    </h1>
+  </div>
+  <div
+    class="w-full flex flex-row justify-center h-full"
+    style="padding: 20px; gap: 50px;flex-wrap:wrap"
+  >
+  {% for party in parties %}
+      <div>
+      <div
+        class="p-[20px] shadow-sm text-center rounded-[12px] flex flex-col justify-center items-center"
+        style="min-width:200px; max-height: 280px; max-width: 250px; background: #eaeaea; border: 1px solid #00000021; position:relative"
+      >
+        <img
+          src="/media/{{party.party.logo}}"
+          alt="vote images"
+          style="width: 130px;height:130px; border-radius: 50%;"
+          class="object-cover"
+        />
+        {% if party.winner %}
+        <img
+          src="{% static '/image/winner.png' %}"
+          alt="vote images"
+          style="width: 213%;max-width:250%; height:100px; border-radius: 50%; top:-22%"
+          class="object-cover absolute"
+        />
+        {% endif %}
+        <p
+          class="font-bold tracking-[0.3px] self-end"
+          style="opacity: 0.9; font-size: 18px; margin-top: 5px"
+        >
+          {{party.party.name}}
+        </p>
+        <p
+          class="tracking-[0.3px] self-end"
+          style="opacity: 0.9; font-size: 12px; margin-top: 5px"
+        >
+        {{party.party.manifesto | truncatechars:30}}
+        </p>
+
+          <div
+          class="text-white font-semibold tracking-[0.3px] self-end vote-btn"
+          style="opacity: 0.9; font-size: 12px; margin-top: 10px;background: #0b3811; min-width:90%; border: none; padding: 10px; border-radius: 5px;"
+        >
+          {{party.party.candidate_name | truncatechars:20}}
+        </div>
+        
+      </div>
+      <div class="rounded-[8px] text-white shadow-sm" style="background:red;padding:5px;margin-top:10px" >
+      <p class="text-center font-semibold text-[16px] " style=""> Total Vote Count</p>
+      <p class="text-center font-semibold text-[16px]"> {{party.votes}}</p>
+      </div>
+    </div>
+  {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+
+
+
+

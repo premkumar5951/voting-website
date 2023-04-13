@@ -21,10 +21,10 @@ class ProfileView(APIView):
         live_events = ElectionEvents.objects.filter(is_ongoing=True).first()
         past_events = ElectionEvents.objects.filter(is_ended=True)
         upcoming = ElectionEvents.objects.filter(is_started=False)
+        is_voted = False
         if live_events:
             is_voted = UserVotes.objects.filter(
                 user=request.user, event=live_events).exists()
-            print(is_voted)
 
         return render(request, 'profile/profile.html', 
                       context={"live_event": live_events, "is_voted": is_voted, "past_event": past_events, "upcoming_event": upcoming})
@@ -117,12 +117,45 @@ class VoteView(APIView):
         party=ElectionParties.objects.filter(id=party_id).first()
         PartyVotes.objects.create(party=party, event=live_events)
         UserVotes.objects.create(user=user, event=live_events)
-        # max_votes=PartyVotes.objects.values('party').annotate(field_count=Count('party')).order_by('-field_count').first()['party']
-        # print(max_votes)
-
         
         return Response(dict(redirect=True, url='/profile', message="Your vote has been casted successfully."))
         
         
 
+        
+class ResultView(APIView):
+
+    def get(self, request,id=None):
+        
+        events = ElectionEvents.objects.filter(id=id).first()
+        
+        if not events:
+            return redirect('/profile')
+        c_lst=[]
+        if not events.parties.all().exists():
+            return redirect('profile')
+        
+        max_votes=1
+        winner=[]
+        for party in events.parties.all():
+            votes=PartyVotes.objects.filter(party=party,event=events).count()
+            c_lst.append({
+                "party":party,
+                "votes":votes,
+            })
+            if votes > max_votes:
+                max_votes = votes
+                winner = [party]
+            elif votes == max_votes:
+                winner.append(party)       
+            
+        c_lst.sort(key=lambda x: x['votes'], reverse=True)
+        for item in c_lst:
+            if item['party'] in winner:
+                item['winner'] = True
+            else:
+                item['winner'] = False
+            
+        return render(request, 'result/result.html', 
+                      context={"event": events,"parties":c_lst})
         
